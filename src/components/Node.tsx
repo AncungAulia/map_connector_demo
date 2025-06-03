@@ -1,5 +1,5 @@
-import React from 'react';
-import { Node as NodeType } from '../types/MapTypes';
+import React from "react";
+import { Node as NodeType } from "../types/MapTypes";
 
 interface NodeProps {
   node: NodeType;
@@ -16,52 +16,73 @@ const Node: React.FC<NodeProps> = ({
   isVisited,
   isCurrent,
   onClick,
-  disabled
+  disabled,
 }) => {
-  const getNodeIcon = (type: NodeType['type']) => {
+  const getNodeIcon = (type: NodeType["type"]) => {
     switch (type) {
-      case 'city': return '🏙️';
-      case 'building': return '🏢';
-      case 'agriculture': return '🚜';
-      case 'military': return '🪖';
-      case 'port': return '⚓';
-      case 'nature': return '🌲';
-      case 'industrial': return '🏭';
-      case 'hospital': return '🏥';
-      case 'school': return '🏫';
-      case 'mountain': return '⛰️';
-      case 'desert': return '🏜️';
-      case 'lake': return '🏞️';
-      case 'bridge': return '🌉';
-      case 'airport': return '✈️';
-      case 'mall': return '🏬';
-      case 'temple': return '⛩️';
-      case 'castle': return '🏰';
-      case 'mine': return '⛏️';
-      case 'farm': return '🚜';
-      case 'park': return '🌳';
-      default: return '📍';
+      case "city":
+        return "🏙️";
+      case "building":
+        return "🏢";
+      case "agriculture":
+        return "🚜";
+      case "military":
+        return "🪖";
+      case "port":
+        return "⚓";
+      case "nature":
+        return "🌲";
+      case "industrial":
+        return "🏭";
+      case "hospital":
+        return "🏥";
+      case "school":
+        return "🏫";
+      case "mountain":
+        return "⛰️";
+      case "desert":
+        return "🏜️";
+      case "lake":
+        return "🏞️";
+      case "bridge":
+        return "🌉";
+      case "airport":
+        return "✈️";
+      case "mall":
+        return "🏬";
+      case "temple":
+        return "⛩️";
+      case "castle":
+        return "🏰";
+      case "mine":
+        return "⛏️";
+      case "farm":
+        return "🚜";
+      case "park":
+        return "🌳";
+      default:
+        return "📍";
     }
   };
 
   const getNodeColor = () => {
-    if (isCurrent) return '#fbbf24';
-    if (isVisited) return '#10b981';
-    if (isSelected) return '#3b82f6';
-    return '#6b7280';
+    if (isCurrent) return "#fbbf24";
+    if (isVisited) return "#10b981";
+    if (isSelected) return "#3b82f6";
+    return "#6b7280";
   };
 
   const getNodeBorderColor = () => {
-    if (isCurrent) return '#f59e0b';
-    if (isVisited) return '#059669';
-    if (isSelected) return '#1d4ed8';
-    return '#4b5563';
+    if (isCurrent) return "#f59e0b";
+    if (isVisited) return "#059669";
+    if (isSelected) return "#1d4ed8";
+    return "#4b5563";
   };
 
   return (
-    <g 
+    <g
       className={`cursor-pointer transition-all duration-300 ${
-        disabled ? 'cursor-not-allowed opacity-50' : 'hover:scale-105'
+        disabled ? "cursor-not-allowed opacity-50" : "hover:scale-y-[0.98]"
       }`}
       onClick={disabled ? undefined : onClick}
     >
@@ -75,12 +96,14 @@ const Node: React.FC<NodeProps> = ({
         strokeWidth="3"
         className="drop-shadow-md"
         style={{
-          filter: isCurrent ? 'drop-shadow(0 0 10px rgba(251, 191, 36, 0.5))' : 
-                  isVisited ? 'drop-shadow(0 0 8px rgba(16, 185, 129, 0.4))' : 
-                  'drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1))'
+          filter: isCurrent
+            ? "drop-shadow(0 0 10px rgba(251, 191, 36, 0.5))"
+            : isVisited
+            ? "drop-shadow(0 0 8px rgba(16, 185, 129, 0.4))"
+            : "drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1))",
         }}
       />
-      
+
       {/* Node icon */}
       <text
         x={node.x}
@@ -91,7 +114,7 @@ const Node: React.FC<NodeProps> = ({
       >
         {getNodeIcon(node.type)}
       </text>
-      
+
       {/* Node label */}
       <text
         x={node.x}
@@ -104,7 +127,7 @@ const Node: React.FC<NodeProps> = ({
       >
         {node.name}
       </text>
-      
+
       {/* Selection indicator */}
       {isSelected && (
         <circle
@@ -118,7 +141,7 @@ const Node: React.FC<NodeProps> = ({
           className="animate-pulse"
         />
       )}
-      
+
       {/* Current node pulse animation */}
       {isCurrent && (
         <circle
